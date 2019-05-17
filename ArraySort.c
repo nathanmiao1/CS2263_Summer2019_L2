@@ -17,7 +17,8 @@
 
 void printArray(int *array, int size)
 {
-    for(int i=0; i<size; i++)
+  int i;
+    for(i=0; i<size; i++)
     {
         if(i != 0)
         {
@@ -30,14 +31,14 @@ void printArray(int *array, int size)
 
 void swapAdjacent(int *a, int index)
 {
-    int *temp = a + index;
+    int temp = *(a + index);
     *(a + index) = *(a + index + 1);
-    *(a + index + 1) = *temp;
+    *(a + index + 1) = temp;
 }
 
 int compareAdjacent(int *a, int index)
 {
-    return *a + index - *a + index + 1;
+    return *(a + index) - *(a + index + 1);
 }
 
 /**
@@ -46,9 +47,11 @@ int compareAdjacent(int *a, int index)
  */
 void inPlaceSort(int *a, int size /* your input parameter */)
 {
-  for (int i=size;i>0;i--)
-    for (int j=0;j<i;j++)
-      if (compareAdjacent(a,j)>1){
+  int i;
+  int j;
+  for (i=size;i>0;i--)
+    for (j=0;j<i;j++)
+      if (compareAdjacent(a,j)>0){
 	swapAdjacent(a,j);
       }
 
@@ -79,17 +82,17 @@ int main(void)
      **********************/
     for(i=0;i<array_size;i++)
       {
-	scanf("%d",& a[i]);
+	scanf("%d", &a[i]);
       }
 
 
 
-    printf("=== Array before Sorting = ");
+    //printf("=== Array before Sorting = ");
     printArray(a, array_size);
 
     inPlaceSort(a, array_size/* your input parameter */);
 
-    printf("=== Array after Sorting = ");
+    //printf("=== Array after Sorting = ");
     printArray(a, array_size);
-
+return EXIT_SUCCESS;
 }
